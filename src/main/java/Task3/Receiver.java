@@ -7,8 +7,8 @@ public class Receiver implements Runnable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Receiver.class);
     private final MailService mailService;
-    private String topic;
-    private String name;
+    private final String topic;
+    private final String name;
 
     Receiver(String topic, String name, MailService mailService) {
         this.mailService = mailService;
@@ -18,7 +18,7 @@ public class Receiver implements Runnable {
 
     public void run() {
         LOGGER.info("Receiver {} has started received messages on topic {}", name, topic);
-        while (true){
+        while (true) {
             mailService.receiveEmail(topic);
         }
     }

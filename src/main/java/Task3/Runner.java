@@ -12,12 +12,12 @@ public class Runner {
         Receiver newsReceiver = new Receiver("News", "NewsReceiver", mailService);
         Receiver spamReceiver = new Receiver("Spam", "SpamReceiver", mailService);
 
-        new Thread(sender1).start();
-        new Thread(sender2).start();
         new Thread(sportReceiver).start();
         new Thread(itReceiver).start();
         new Thread(newsReceiver).start();
         new Thread(spamReceiver).start();
+        new Thread(sender1).start();
+        new Thread(sender2).start();
     }
 
 }
