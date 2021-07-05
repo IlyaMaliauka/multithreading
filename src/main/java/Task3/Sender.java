@@ -7,7 +7,7 @@ public class Sender implements Runnable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Sender.class);
     private final MailService mailService;
-    private String name;
+    private final String name;
 
     public String getName() {
         return name;
