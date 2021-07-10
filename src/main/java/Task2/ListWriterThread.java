@@ -25,7 +25,7 @@ public class ListWriterThread extends Thread{
             try {
                 Thread.sleep(500);
             } catch (InterruptedException ex) {
-                ex.printStackTrace();
+                LOGGER.error(ex.getLocalizedMessage());
             }
         }
     }

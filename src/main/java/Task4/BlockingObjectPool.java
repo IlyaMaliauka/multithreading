@@ -7,9 +7,9 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * Pool that block when it has not any items or it full
  */
-public abstract class BlockingObjectPool<Object> {
+public abstract class BlockingObjectPool<T> {
 
-    private final BlockingQueue<Object> pool;
+    private final BlockingQueue<T> pool;
     private final ReentrantLock lock = new ReentrantLock();
     private int createdObjects = 0;
     private final int size;
@@ -31,7 +31,7 @@ public abstract class BlockingObjectPool<Object> {
     /**
      * Gets object from pool or blocks if pool is empty * * @return object from pool
      */
-    public Object get() throws InterruptedException {
+    public T get() throws InterruptedException {
         if (!lock.isLocked()) {
             if (lock.tryLock()) {
                 try {
@@ -48,8 +48,8 @@ public abstract class BlockingObjectPool<Object> {
     /**
      * Puts object to pool or blocks if pool is full * * @param object to be taken back to pool
      */
-    public void take(Object object) {
-        pool.add(object);
+    public void take(T t) {
+        pool.add(t);
     }
 
     public void createPool() {
@@ -61,5 +61,5 @@ public abstract class BlockingObjectPool<Object> {
         }
     }
 
-    protected abstract Object createObject();
+    protected abstract T createObject();
 }
